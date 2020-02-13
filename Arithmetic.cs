@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Calculator
 {
@@ -16,10 +17,19 @@ namespace Calculator
 
         public long increase(long num)
         {
-            number1 = number1 * 10 + num;
-            return number1;
+            long newNumber = (number1 * 10) + num;
+            long prevNumber = (newNumber - num) / 10;
+            //System.Diagnostics.Debug.WriteLine(num.ToString() + " " + newNumber.ToString() + " " + prevNumber.ToString());
+            if (prevNumber != number1)
+            {
+                return number1;
+            }
+
+            return number1 = newNumber;
+ 
         }
 
 
     }
 }
+;

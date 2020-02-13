@@ -40,7 +40,7 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
+            this.plus = new System.Windows.Forms.Button();
             this.equals = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
@@ -145,6 +145,7 @@
             // 
             this.button10.Location = new System.Drawing.Point(75, 362);
             this.button10.Name = "button10";
+            this.button10.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.button10.Size = new System.Drawing.Size(60, 60);
             this.button10.TabIndex = 9;
             this.button10.Text = "0";
@@ -170,14 +171,15 @@
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
-            // button13
+            // plus
             // 
-            this.button13.Location = new System.Drawing.Point(207, 296);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(60, 60);
-            this.button13.TabIndex = 12;
-            this.button13.Text = "+";
-            this.button13.UseVisualStyleBackColor = true;
+            this.plus.Location = new System.Drawing.Point(207, 296);
+            this.plus.Name = "plus";
+            this.plus.Size = new System.Drawing.Size(60, 60);
+            this.plus.TabIndex = 12;
+            this.plus.Text = "+";
+            this.plus.UseVisualStyleBackColor = true;
+            this.plus.Click += new System.EventHandler(this.plus_Click);
             // 
             // equals
             // 
@@ -214,6 +216,7 @@
             this.textBox.Name = "textBox";
             this.textBox.Size = new System.Drawing.Size(258, 22);
             this.textBox.TabIndex = 16;
+            this.textBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Inv
@@ -266,7 +269,7 @@
             this.Controls.Add(this.button16);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.equals);
-            this.Controls.Add(this.button13);
+            this.Controls.Add(this.plus);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button10);
@@ -300,7 +303,7 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button plus;
         private System.Windows.Forms.Button equals;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button16;

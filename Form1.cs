@@ -95,5 +95,11 @@ namespace Calculator
             long num = ar.increase(0);
             textBox.Text = num.ToString();
         }
+
+        private void plus_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

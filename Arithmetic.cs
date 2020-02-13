@@ -6,75 +6,70 @@ namespace Calculator
     public class Arithmetic
     {
        
-        private long number1;
+        private long number;
         private Stack<long> _numberStack;
         private Stack<char> _operatorStack;
-        public enum ArithmeticOperation {
-            addition,
-            subtraction,
-            multiplication,
-            division,
-            inverse,
-            square,
-            squareroot
-        };
-
+  
         public Arithmetic()
         {
-            number1 = 0;
+            number = 0;
             _numberStack = new Stack<long>();
             _operatorStack = new Stack<char>();
         }
 
         public long increase(long num)
         {
-            long newNumber = (number1 * 10) + num;
-            long prevNumber = (newNumber - num) / 10;
-            //System.Diagnostics.Debug.WriteLine(num.ToString() + " " + newNumber.ToString() + " " + prevNumber.ToString());
-            if (prevNumber != number1)
+            if (number.ToString().Length == 9)
             {
-                return number1;
+                return number;
             }
 
-            return number1 = newNumber;
+            return number = number * 10 + num;
  
         }
 
-        public void Operation(ArithmeticOperation operationMode) {
-            char op;
-
-            switch (operationMode)
-            {
-                case ArithmeticOperation.addition:
-                    op = '+';
-                    break;
-                case ArithmeticOperation.subtraction:
-                    op = '-';
-                    break;
-                case ArithmeticOperation.division:
-                    op = '/';
-                    break;
-                case ArithmeticOperation.multiplication:
-                    op = '*';
-                    break;
-                default:
-                    return;
-            }
-
-            // in case user has pressed the operation again after a last operation
-            // like 12 + * , we pop + and add *
-            if (_numberStack.Count == _operatorStack.Count && 
-                _operatorStack.Count != 0)
+        public void Operation(char op) {
+            
+            if (_numberStack.Count == 1 && _operatorStack.Count == 1) 
             {
                 _operatorStack.Pop();
                 _operatorStack.Push(op);
                 return;
             }
 
-            _numberStack.Push(number1);
-            number1 = 0;
+            if (_numberStack.Count == 2 && _operatorStack.Count == 2)
+            {
+                execute();
+                _operatorStack.Push(op);
+                return;
+            }
+
+            _numberStack.Push(number);
+            number = 0;
             _operatorStack.Push(op);
+
             return;
+        }
+
+        public long execute()
+        {
+            long number1, number2;
+            if (_numberStack.Count == 1)
+            {
+                number1 = number2 = _numberStack.Pop();
+            } else if (_numberStack.Count == 2)
+            {
+                number2 = _numberStack.Pop();
+                number1 = _numberStack.Pop();
+            } else
+            {
+                return 0;
+            }
+
+
+            
+
+            return number;
         }
     }
 }

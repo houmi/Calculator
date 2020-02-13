@@ -12,19 +12,10 @@ namespace Calculator
            
         }
 
-        private void button12_Click(object sender, EventArgs e)
+        private void button0_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button16_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+            long num = ar.increase(0);
+            textBox.Text = num.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -33,25 +24,10 @@ namespace Calculator
             textBox.Text = num.ToString();
         }
 
-        private void button7_Click(object sender, EventArgs e)
-        {
-            long num = ar.increase(7);
-            textBox.Text = num.ToString();
-        }
-
-        private void Inv_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             long num = ar.increase(2);
             textBox.Text = num.ToString();
-        }
-
-        private void equals_Click(object sender, EventArgs e)
-        {
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -78,6 +54,12 @@ namespace Calculator
             textBox.Text = num.ToString();
         }
 
+        private void button7_Click(object sender, EventArgs e)
+        {
+            long num = ar.increase(7);
+            textBox.Text = num.ToString();
+        }
+
         private void button8_Click(object sender, EventArgs e)
         {
             long num = ar.increase(8);
@@ -90,16 +72,30 @@ namespace Calculator
             textBox.Text = num.ToString();
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void equals_Click(object sender, EventArgs e)
         {
-            long num = ar.increase(0);
-            textBox.Text = num.ToString();
+            long result = ar.execute();
+            textBox.Text = result.ToString();
         }
 
-        private void plus_Click(object sender, EventArgs e)
+        private void addition_Click(object sender, EventArgs e)
         {
-            ar.Operation(Arithmetic.ArithmeticOperation.addition);
+            ar.Operation('+');
         }
 
+        private void multiplication_Click(object sender, EventArgs e)
+        {
+            ar.Operation('*');
+        }
+
+        private void division_Click(object sender, EventArgs e)
+        {
+            ar.Operation('/');
+        }
+
+        private void subtraction_Click(object sender, EventArgs e)
+        {
+            ar.Operation('+');
+        }
     }
 }

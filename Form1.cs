@@ -98,7 +98,7 @@ namespace Calculator
 
         private void plus_Click(object sender, EventArgs e)
         {
-
+            ar.Operation(Arithmetic.ArithmeticOperation.addition);
         }
 
     }

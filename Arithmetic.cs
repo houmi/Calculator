@@ -66,10 +66,32 @@ namespace Calculator
                 return 0;
             }
 
+            char op = _operatorStack.Pop();
+            if (op == '+')
+            {
+                number = number1 + number2;
+            } else if (op == '-')
+            {
+                number = number1 - number2;
+            } else if (op == '/')
+            {
+                number = number1 / number2;
+            } else if (op == '*')
+            {
+                number = number1 * number2;
+            }
 
+            _numberStack.Clear();
+            _operatorStack.Clear();
             
-
             return number;
+        }
+
+        public void Clear()
+        {
+            number = 0;
+            _numberStack.Clear();
+            _operatorStack.Clear();
         }
     }
 }

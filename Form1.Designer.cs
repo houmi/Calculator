@@ -47,7 +47,7 @@
             this.button17 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
             this.division = new System.Windows.Forms.Button();
-            this.C = new System.Windows.Forms.Button();
+            this.Clear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -237,21 +237,22 @@
             this.division.UseVisualStyleBackColor = true;
             this.division.Click += new System.EventHandler(this.division_Click);
             // 
-            // C
+            // Clear
             // 
-            this.C.Location = new System.Drawing.Point(11, 98);
-            this.C.Name = "C";
-            this.C.Size = new System.Drawing.Size(60, 60);
-            this.C.TabIndex = 22;
-            this.C.Text = "C";
-            this.C.UseVisualStyleBackColor = true;
+            this.Clear.Location = new System.Drawing.Point(11, 98);
+            this.Clear.Name = "Clear";
+            this.Clear.Size = new System.Drawing.Size(60, 60);
+            this.Clear.TabIndex = 22;
+            this.Clear.Text = "C";
+            this.Clear.UseVisualStyleBackColor = true;
+            this.Clear.Click += new System.EventHandler(this.Clear_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(276, 430);
-            this.Controls.Add(this.C);
+            this.Controls.Add(this.Clear);
             this.Controls.Add(this.division);
             this.Controls.Add(this.button18);
             this.Controls.Add(this.button17);
@@ -299,7 +300,7 @@
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button division;
-        private System.Windows.Forms.Button C;
+        private System.Windows.Forms.Button Clear;
     }
 }
 

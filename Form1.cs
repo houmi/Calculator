@@ -97,5 +97,11 @@ namespace Calculator
         {
             ar.Operation('+');
         }
+
+        private void Clear_Click(object sender, EventArgs e)
+        {
+            ar.Clear();
+            textBox.Text = "0";
+        }
     }
 }

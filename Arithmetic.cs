@@ -6,92 +6,116 @@ namespace Calculator
     public class Arithmetic
     {
        
-        private long number;
         private Stack<long> _numberStack;
         private Stack<char> _operatorStack;
   
         public Arithmetic()
         {
-            number = 0;
             _numberStack = new Stack<long>();
+            topNumber = 0;
             _operatorStack = new Stack<char>();
+        }
+
+        public long topNumber
+        {
+            get
+            {
+                return _numberStack.Peek();
+            }
+            set
+            {
+                if (_numberStack.Count > 0)
+                {
+                    _numberStack.Pop();
+                }
+                _numberStack.Push(value);
+            }
         }
 
         public long increase(long num)
         {
-            if (number.ToString().Length == 9)
+            if (topNumber.ToString().Length == 9)
             {
-                return number;
+                return topNumber;
             }
-
-            return number = number * 10 + num;
+   
+            return topNumber = topNumber * 10 + num;
  
         }
 
         public void Operation(char op) {
             
-            if (_numberStack.Count == 1 && _operatorStack.Count == 1) 
+            // if one operation right after another, discard previous
+            if (_numberStack.Count == 1 && _operatorStack.Count == 1 && op != '=') 
             {
                 _operatorStack.Pop();
                 _operatorStack.Push(op);
                 return;
             }
 
-            if (_numberStack.Count == 2 && _operatorStack.Count == 2)
+            if (op == '=')
+            {
+                if (_numberStack.Count <= 1 && _operatorStack.Count == 0)
+                {
+                    return;
+                }
+
+                execute();
+                return;
+
+            }
+
+            if (_numberStack.Count == 2 && _operatorStack.Count == 1)
             {
                 execute();
                 _operatorStack.Push(op);
                 return;
             }
 
-            _numberStack.Push(number);
-            number = 0;
             _operatorStack.Push(op);
-
+            _numberStack.Push(0);
             return;
         }
 
-        public long execute()
+        public void execute()
         {
             long number1, number2;
             if (_numberStack.Count == 1)
             {
-                number1 = number2 = _numberStack.Pop();
+                number1 = number2 = topNumber;
             } else if (_numberStack.Count == 2)
             {
                 number2 = _numberStack.Pop();
                 number1 = _numberStack.Pop();
             } else
             {
-                return 0;
+                return;
             }
 
             char op = _operatorStack.Pop();
             if (op == '+')
             {
-                number = number1 + number2;
+                topNumber = number1 + number2;
             } else if (op == '-')
             {
-                number = number1 - number2;
+                topNumber = number1 - number2;
             } else if (op == '/')
             {
-                number = number1 / number2;
+                topNumber = number1 / number2;
             } else if (op == '*')
             {
-                number = number1 * number2;
+                topNumber = number1 * number2;
             }
 
-            _numberStack.Clear();
-            _operatorStack.Clear();
-            
-            return number;
+           
+            return;
         }
 
         public void Clear()
         {
-            number = 0;
             _numberStack.Clear();
             _operatorStack.Clear();
+            topNumber = 0;
         }
     }
 }

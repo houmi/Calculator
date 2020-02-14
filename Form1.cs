@@ -74,34 +74,43 @@ namespace Calculator
 
         private void equals_Click(object sender, EventArgs e)
         {
-            long result = ar.execute();
-            textBox.Text = result.ToString();
+            ar.Operation('=');
+            updateTextBox();
         }
 
         private void addition_Click(object sender, EventArgs e)
         {
             ar.Operation('+');
+            //updateTextBox();
         }
 
         private void multiplication_Click(object sender, EventArgs e)
         {
             ar.Operation('*');
+            //updateTextBox();
         }
 
         private void division_Click(object sender, EventArgs e)
         {
             ar.Operation('/');
+            //updateTextBox();
         }
 
         private void subtraction_Click(object sender, EventArgs e)
         {
-            ar.Operation('+');
+            ar.Operation('-');
+            //updateTextBox();
         }
 
         private void Clear_Click(object sender, EventArgs e)
         {
             ar.Clear();
-            textBox.Text = "0";
+            updateTextBox();
+        }
+
+        public void updateTextBox()
+        {
+            textBox.Text = ar.topNumber.ToString();
         }
     }
 }

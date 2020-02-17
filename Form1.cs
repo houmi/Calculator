@@ -9,7 +9,7 @@ namespace Calculator
         public Form1()
         {
             InitializeComponent();
-           
+            textBox.Text = "0";
         }
 
         private void button0_Click(object sender, EventArgs e)

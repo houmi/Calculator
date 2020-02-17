@@ -8,8 +8,16 @@ namespace Calculator
        
         private Stack<long> _numberStack;
         private Stack<char> _operatorStack;
-        bool executed;
-        bool isLastOperationASDM;
+        
+
+        private enum State {
+            ADSM,
+            Execute,
+            Digit
+        };
+
+        private State calcState;
+
 
         public long topNumber
         {
@@ -30,25 +38,26 @@ namespace Calculator
         public Arithmetic()
         {
             _numberStack = new Stack<long>();
-            topNumber = 0;
-            executed = false;
-            isLastOperationASDM = false;
             _operatorStack = new Stack<char>();
+            topNumber = 0;
+            calcState = State.Digit;
         }
 
         
 
         public long increase(long num)
         {
-            if (executed)
+            if (calcState == State.Execute)
             {
                 Clear();
             }
 
-            if (isLastOperationASDM)
+            if (calcState == State.ADSM)
             {
-                isLastOperationASDM = false;
+                _numberStack.Push(0);
             }
+
+            calcState = State.Digit;
 
             // don't go past 9 digits
             if (topNumber.ToString().Length == 9)
@@ -64,14 +73,6 @@ namespace Calculator
 
             display = false;
 
-            // if one operation right after another, discard previous
-            if (isLastOperationASDM) 
-            {
-                _operatorStack.Pop();
-                _operatorStack.Push(op);
-                return;
-            }
-
             if (op == '=')
             {
                 if (_operatorStack.Count == 0)
@@ -80,38 +81,43 @@ namespace Calculator
                 }
 
                 execute();
+                calcState = State.Execute;
                 display = true;
-                executed = true;
                 return;
 
+            }
+
+            // if one operation right after another, discard previous
+            if (calcState == State.ADSM) 
+            {
+                _operatorStack.Pop();
+                _operatorStack.Push(op);
+                return;
             }
 
             if (_numberStack.Count == 2 && _operatorStack.Count == 1)
             {
                 execute();
                 _operatorStack.Push(op);
-                isLastOperationASDM = true;
+                calcState = State.ADSM;
                 display = true;
-                executed = true;
                 return;
             }
 
-            if (executed)
-            {
-                executed = false;
-            }
             _operatorStack.Push(op);
-            _numberStack.Push(0);
-            isLastOperationASDM = true;
+           // _numberStack.Push(0);
+            calcState = State.ADSM;
             return;
         }
 
         public void execute()
         {
+            bool singleNumber = false;
             long number1, number2;
             if (_numberStack.Count == 1)
             {
                 number1 = number2 = topNumber;
+                singleNumber = true;
             } else if (_numberStack.Count == 2)
             {
                 number2 = _numberStack.Pop();
@@ -121,7 +127,15 @@ namespace Calculator
                 return;
             }
 
-            char op = _operatorStack.Pop();
+            char op;
+
+            if (singleNumber)
+            {
+                op = _operatorStack.Peek();
+            } else
+            {
+                op = _operatorStack.Pop();
+            }
             if (op == '+')
             {
                 topNumber = number1 + number2;
@@ -136,7 +150,6 @@ namespace Calculator
                 topNumber = number1 * number2;
             }
 
-           
             return;
         }
 
@@ -152,8 +165,7 @@ namespace Calculator
         {
             _numberStack.Clear();
             _operatorStack.Clear();
-            isLastOperationASDM = false;
-            executed = false;
+            calcState = State.Digit;
             topNumber = 0;
         }
     }

@@ -14,61 +14,61 @@ namespace Calculator
 
         private void button0_Click(object sender, EventArgs e)
         {
-            long num = ar.increase(0);
+            double num = ar.increase(0);
             textBox.Text = num.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            long num = ar.increase(1);
+            double num = ar.increase(1);
             textBox.Text = num.ToString();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            long num = ar.increase(2);
+            double num = ar.increase(2);
             textBox.Text = num.ToString();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            long num = ar.increase(3);
+            double num = ar.increase(3);
             textBox.Text = num.ToString();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            long num = ar.increase(4);
+            double num = ar.increase(4);
             textBox.Text = num.ToString();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            long num = ar.increase(5);
+            double num = ar.increase(5);
             textBox.Text = num.ToString();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            long num = ar.increase(6);
+            double num = ar.increase(6);
             textBox.Text = num.ToString();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            long num = ar.increase(7);
+            double num = ar.increase(7);
             textBox.Text = num.ToString();
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            long num = ar.increase(8);
+            double num = ar.increase(8);
             textBox.Text = num.ToString();
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            long num = ar.increase(9);
+            double num = ar.increase(9);
             textBox.Text = num.ToString();
         }
 
@@ -122,6 +122,11 @@ namespace Calculator
         {
             ar.negate();
             updateTextBox();
+        }
+
+        private void decimalpoint_Click(object sender, EventArgs e)
+        {
+            ar.decimalPointSet();
         }
     }
 }

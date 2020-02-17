@@ -6,8 +6,9 @@ namespace Calculator
     public class Arithmetic
     {
        
-        private Stack<long> _numberStack;
+        private Stack<double> _numberStack;
         private Stack<char> _operatorStack;
+        private bool decimalPoint;
         
 
         private enum State {
@@ -17,9 +18,10 @@ namespace Calculator
         };
 
         private State calcState;
+        private double mult;
 
 
-        public long topNumber
+        public double topNumber
         {
             get
             {
@@ -37,15 +39,17 @@ namespace Calculator
 
         public Arithmetic()
         {
-            _numberStack = new Stack<long>();
+            _numberStack = new Stack<double>();
             _operatorStack = new Stack<char>();
             topNumber = 0;
+            decimalPoint = false;
             calcState = State.Digit;
+            mult = .1;
         }
 
         
 
-        public long increase(long num)
+        public double increase(double num)
         {
             if (calcState == State.Execute)
             {
@@ -55,6 +59,8 @@ namespace Calculator
             if (calcState == State.ADSM)
             {
                 _numberStack.Push(0);
+                mult = .1;
+                decimalPoint = false;
             }
 
             calcState = State.Digit;
@@ -64,8 +70,18 @@ namespace Calculator
             {
                 return topNumber;
             }
-   
-            return topNumber = topNumber * 10 + num;
+
+            if (decimalPoint)
+            {
+                topNumber = (num * mult) + topNumber;
+                mult *= .1;
+            }
+            else
+            {
+                topNumber = topNumber * 10 + num;
+            }
+
+            return topNumber;
  
         }
 
@@ -113,7 +129,7 @@ namespace Calculator
         public void execute()
         {
             bool singleNumber = false;
-            long number1, number2;
+            double number1, number2;
             if (_numberStack.Count == 1)
             {
                 number1 = number2 = topNumber;
@@ -167,6 +183,13 @@ namespace Calculator
             _operatorStack.Clear();
             calcState = State.Digit;
             topNumber = 0;
+            decimalPoint = false;
+            mult = .1;
+        }
+
+        public void decimalPointSet()
+        {
+            decimalPoint = true;
         }
     }
 }

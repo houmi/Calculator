@@ -42,7 +42,7 @@
             this.subtraction = new System.Windows.Forms.Button();
             this.plus = new System.Windows.Forms.Button();
             this.equals = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
+            this.decimalpoint = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.TextBox();
             this.negate = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
@@ -191,14 +191,15 @@
             this.equals.UseVisualStyleBackColor = true;
             this.equals.Click += new System.EventHandler(this.equals_Click);
             // 
-            // button15
+            // decimalpoint
             // 
-            this.button15.Location = new System.Drawing.Point(141, 362);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(60, 60);
-            this.button15.TabIndex = 14;
-            this.button15.Text = ".";
-            this.button15.UseVisualStyleBackColor = true;
+            this.decimalpoint.Location = new System.Drawing.Point(141, 362);
+            this.decimalpoint.Name = "decimalpoint";
+            this.decimalpoint.Size = new System.Drawing.Size(60, 60);
+            this.decimalpoint.TabIndex = 14;
+            this.decimalpoint.Text = ".";
+            this.decimalpoint.UseVisualStyleBackColor = true;
+            this.decimalpoint.Click += new System.EventHandler(this.decimalpoint_Click);
             // 
             // textBox
             // 
@@ -259,7 +260,7 @@
             this.Controls.Add(this.button18);
             this.Controls.Add(this.negate);
             this.Controls.Add(this.textBox);
-            this.Controls.Add(this.button15);
+            this.Controls.Add(this.decimalpoint);
             this.Controls.Add(this.equals);
             this.Controls.Add(this.plus);
             this.Controls.Add(this.subtraction);
@@ -297,7 +298,7 @@
         private System.Windows.Forms.Button subtraction;
         private System.Windows.Forms.Button plus;
         private System.Windows.Forms.Button equals;
-        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button decimalpoint;
         private System.Windows.Forms.TextBox textBox;
         private System.Windows.Forms.Button negate;
         private System.Windows.Forms.Button button18;

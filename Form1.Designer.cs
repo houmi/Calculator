@@ -44,7 +44,7 @@
             this.equals = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.TextBox();
-            this.button17 = new System.Windows.Forms.Button();
+            this.negate = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
             this.division = new System.Windows.Forms.Button();
             this.Clear = new System.Windows.Forms.Button();
@@ -205,18 +205,20 @@
             this.textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox.Location = new System.Drawing.Point(12, 24);
             this.textBox.Name = "textBox";
-            this.textBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.textBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.textBox.Size = new System.Drawing.Size(255, 56);
             this.textBox.TabIndex = 21;
+            this.textBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // button17
+            // negate
             // 
-            this.button17.Location = new System.Drawing.Point(75, 98);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(60, 60);
-            this.button17.TabIndex = 18;
-            this.button17.Text = "+/-";
-            this.button17.UseVisualStyleBackColor = true;
+            this.negate.Location = new System.Drawing.Point(75, 98);
+            this.negate.Name = "negate";
+            this.negate.Size = new System.Drawing.Size(60, 60);
+            this.negate.TabIndex = 18;
+            this.negate.Text = "+/-";
+            this.negate.UseVisualStyleBackColor = true;
+            this.negate.Click += new System.EventHandler(this.negate_Click);
             // 
             // button18
             // 
@@ -255,7 +257,7 @@
             this.Controls.Add(this.Clear);
             this.Controls.Add(this.division);
             this.Controls.Add(this.button18);
-            this.Controls.Add(this.button17);
+            this.Controls.Add(this.negate);
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.equals);
@@ -297,7 +299,7 @@
         private System.Windows.Forms.Button equals;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.TextBox textBox;
-        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button negate;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button division;
         private System.Windows.Forms.Button Clear;

@@ -72,34 +72,39 @@ namespace Calculator
             textBox.Text = num.ToString();
         }
 
+        void sendOperation(char op)
+        {
+            bool display;
+            ar.Operation(op, out display);
+            if (display)
+            {
+                updateTextBox();
+            }
+        }
+
         private void equals_Click(object sender, EventArgs e)
         {
-            ar.Operation('=');
-            updateTextBox();
+            sendOperation('=');
         }
 
         private void addition_Click(object sender, EventArgs e)
         {
-            ar.Operation('+');
-            //updateTextBox();
+            sendOperation('+');
         }
 
         private void multiplication_Click(object sender, EventArgs e)
         {
-            ar.Operation('*');
-            //updateTextBox();
+            sendOperation('*');
         }
 
         private void division_Click(object sender, EventArgs e)
         {
-            ar.Operation('/');
-            //updateTextBox();
+            sendOperation('/');
         }
 
         private void subtraction_Click(object sender, EventArgs e)
         {
-            ar.Operation('-');
-            //updateTextBox();
+            sendOperation('-');
         }
 
         private void Clear_Click(object sender, EventArgs e)
@@ -111,6 +116,12 @@ namespace Calculator
         public void updateTextBox()
         {
             textBox.Text = ar.topNumber.ToString();
+        }
+
+        private void negate_Click(object sender, EventArgs e)
+        {
+            ar.negate();
+            updateTextBox();
         }
     }
 }

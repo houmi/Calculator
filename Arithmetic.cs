@@ -8,13 +8,8 @@ namespace Calculator
        
         private Stack<long> _numberStack;
         private Stack<char> _operatorStack;
-  
-        public Arithmetic()
-        {
-            _numberStack = new Stack<long>();
-            topNumber = 0;
-            _operatorStack = new Stack<char>();
-        }
+        bool executed;
+        bool isLastOperationASDM;
 
         public long topNumber
         {
@@ -32,8 +27,30 @@ namespace Calculator
             }
         }
 
+        public Arithmetic()
+        {
+            _numberStack = new Stack<long>();
+            topNumber = 0;
+            executed = false;
+            isLastOperationASDM = false;
+            _operatorStack = new Stack<char>();
+        }
+
+        
+
         public long increase(long num)
         {
+            if (executed)
+            {
+                Clear();
+            }
+
+            if (isLastOperationASDM)
+            {
+                isLastOperationASDM = false;
+            }
+
+            // don't go past 9 digits
             if (topNumber.ToString().Length == 9)
             {
                 return topNumber;
@@ -43,10 +60,12 @@ namespace Calculator
  
         }
 
-        public void Operation(char op) {
-            
+        public void Operation(char op, out bool display) {
+
+            display = false;
+
             // if one operation right after another, discard previous
-            if (_numberStack.Count == 1 && _operatorStack.Count == 1 && op != '=') 
+            if (isLastOperationASDM) 
             {
                 _operatorStack.Pop();
                 _operatorStack.Push(op);
@@ -55,12 +74,14 @@ namespace Calculator
 
             if (op == '=')
             {
-                if (_numberStack.Count <= 1 && _operatorStack.Count == 0)
+                if (_operatorStack.Count == 0)
                 {
                     return;
                 }
 
                 execute();
+                display = true;
+                executed = true;
                 return;
 
             }
@@ -69,11 +90,19 @@ namespace Calculator
             {
                 execute();
                 _operatorStack.Push(op);
+                isLastOperationASDM = true;
+                display = true;
+                executed = true;
                 return;
             }
 
+            if (executed)
+            {
+                executed = false;
+            }
             _operatorStack.Push(op);
             _numberStack.Push(0);
+            isLastOperationASDM = true;
             return;
         }
 
@@ -111,10 +140,20 @@ namespace Calculator
             return;
         }
 
+        public void negate()
+        {
+            if (topNumber != 0)
+            {
+                topNumber *= -1;
+            }
+        }
+
         public void Clear()
         {
             _numberStack.Clear();
             _operatorStack.Clear();
+            isLastOperationASDM = false;
+            executed = false;
             topNumber = 0;
         }
     }
